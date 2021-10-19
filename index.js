@@ -1,16 +1,18 @@
 require('dotenv').config();
-const express = require("express");
-const path = require("path");
+
+const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000; 
 const db = require('./database');
 const worldMenu = require ('./models');
-let message = "";
+const path = require('path');
+const port = process.env.PORT || 3000;
 
+let message = '';
 
-app.use(express.urlencoded());
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({extended:true}));
 
 app.get('/', async (req,res) => {
     setTimeout(() => {
